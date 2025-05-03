@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import MobileAd from '@components/mobileAd/MobileAd.vue'
 
 const props = defineProps<{
   title: string,
@@ -14,13 +13,6 @@ const props = defineProps<{
         <span class="login-logo"></span>
       </h1>
     </header>
-    <div class="login-container">
-      <slot></slot>
-
-      <div class="mobileAd">
-        <MobileAd/>
-      </div>
-    </div>
   </div>
 </template>
 

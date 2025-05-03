@@ -38,7 +38,6 @@ const uploadedMedia = ref<File | null>(null)
 const mediaShow = ref<string | null>(null)
 const snackbarStore = useSnackbarStore()
 
-const selectedChat = ref<ChatRoomType | null>(null)
 
 const tabTranslations: Record<string, string> = {
   OPENED: 'открыто',
@@ -97,7 +96,7 @@ const updateStatus = async (status: string) => {
         props.selectedChat.statement.id ?? null,
         status
       )
-      emit('update-status', props.selectedChat.status, status)
+      // emit('update-status', props.selectedChat.status, status)
       snackbarStore.pullSnackbar(
         'Статус объекта успешно изменен на' + tabTranslations[status],
         3000,

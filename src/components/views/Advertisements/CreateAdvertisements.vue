@@ -130,7 +130,7 @@ import { useSnackbarStore } from '@stores/SnackbarStore'
 import { categories } from '@/utils/categoryList'
 
 const snackbarStore = useSnackbarStore()
-const options = { mask: '+77#########' }
+const options = '+77#########'
 const userStore = useUserStore()
 const dialog = ref(false)
 const valid = ref(false)

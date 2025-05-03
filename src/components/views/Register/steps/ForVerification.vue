@@ -19,7 +19,7 @@ const error = ref('')
 
 userPhone.value = JSON.parse(localStorage.getItem('phone') || '{}');
 
-const options = { mask: '+77#########' }
+const options = '+77#########'
 
 const togglePasswordVisibility = () => {
   showPassword.value = !showPassword.value

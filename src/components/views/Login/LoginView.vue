@@ -103,7 +103,7 @@ const { t } = useI18n()
 
 import { vMaska } from 'maska'
 import { ChatLogin } from '@views/Chat/ChatAuth'
-const options = { mask: '+77#########' }
+const options = '+77#########'
 const i18n = useI18n()
 
 const currentLanguage = ref('ru') // Define as reactive ref
