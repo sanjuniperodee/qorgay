@@ -13,12 +13,12 @@ import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import App from './App.vue'
 import router from './router'
 
-import 'vuetify/styles'
+// import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
+import * as directives from 'vuetify/directives'
 //@ts-ignore
 import { aliases, mdi } from 'vuetify/iconsets/mdi'
-import * as directives from 'vuetify/directives'
 import { createI18n } from 'vue-i18n'
 import enLocale from './locales/en.json'
 import ruLocale from './locales/ru.json'
@@ -44,6 +44,7 @@ const vuetify = createVuetify({
     t: (key, ...params) => i18n.global.t(key, params)
   },
   date: {
+    // @ts-ignore
     adapter: DateFnsAdapter,
     locale: {
       en: enUS,
@@ -66,7 +67,7 @@ pinia.use(piniaPluginPersistedstate)
 app.use(pinia)
 app.use(i18n)
 app.use(router)
-app.use(vuetify)
+app.use(vuetify as any)  // Temporary type workaround
 app.directive('lazy', lazyLoad)
 
 app.mount('#app')
