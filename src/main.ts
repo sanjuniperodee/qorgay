@@ -4,19 +4,21 @@ import '@mdi/font/css/materialdesignicons.css'
 import '@fortawesome/fontawesome-free/css/all.css'
 import DateFnsAdapter from '@date-io/date-fns'
 import enUS from 'date-fns/locale/en-US'
-import ru from 'date-fns/locale/ru'
+import ruRu from 'date-fns/locale/ru'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+
+//@ts-ignore
 import App from './App.vue'
 import router from './router'
 
-// Vuetify 2 imports
-import 'vuetify/dist/vuetify.min.css'
-import Vuetify from 'vuetify'
-import 'material-design-icons-iconfont/dist/material-design-icons.css'
-import '@mdi/font/css/materialdesignicons.min.css'
-// i18n
+import 'vuetify/styles'
+import { createVuetify } from 'vuetify'
+import * as components from 'vuetify/components'
+//@ts-ignore
+import { aliases, mdi } from 'vuetify/iconsets/mdi'
+import * as directives from 'vuetify/directives'
 import { createI18n } from 'vue-i18n'
 import enLocale from './locales/en.json'
 import ruLocale from './locales/ru.json'
@@ -34,16 +36,26 @@ const i18n = createI18n({
   }
 })
 
-const vuetify = new Vuetify({
-  icons: {
-    iconfont: 'mdi',
-  },
-  lang: {
+const vuetify = createVuetify({
+  components,
+  directives,
+  locale: {
+    // @ts-expect-error
     t: (key, ...params) => i18n.global.t(key, params)
   },
   date: {
     adapter: DateFnsAdapter,
-    locale: ru // Single locale for Vuetify 2
+    locale: {
+      en: enUS,
+      ru: ruRu
+    }
+  },
+  icons: {
+    defaultSet: 'mdi',
+    aliases,
+    sets: {
+      mdi
+    }
   }
 })
 
@@ -54,7 +66,7 @@ pinia.use(piniaPluginPersistedstate)
 app.use(pinia)
 app.use(i18n)
 app.use(router)
-app.use(vuetify as any)
+app.use(vuetify)
 app.directive('lazy', lazyLoad)
 
 app.mount('#app')
