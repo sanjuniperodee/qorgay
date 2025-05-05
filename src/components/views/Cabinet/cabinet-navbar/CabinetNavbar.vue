@@ -2,10 +2,15 @@
 import { useRouter } from 'vue-router'
 import { ref, onMounted, onUnmounted } from 'vue'
 import { close, menu, house, people, tools, settingSvg, person } from '@/assets/svg'
+import { useUserStore } from '@/stores/UserStore'
+import { computed } from 'vue'
 
 const router = useRouter()
 const navbarClosed = ref(false)
 const isMobile = ref(false)
+
+const userStore = useUserStore()
+const isAuthenticated = computed(() => userStore.isAuthenticated)
 
 const goToPage = (route: string) => {
   router.push({ name: route })
@@ -37,6 +42,7 @@ onUnmounted(() => {
 
 <template>
   <nav
+    v-if="isAuthenticated"
     class="navbar"
     :class="{ 'navbar-closed': navbarClosed, mobile: isMobile }"
   >
