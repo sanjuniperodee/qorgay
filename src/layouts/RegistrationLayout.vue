@@ -13,6 +13,13 @@ const props = defineProps<{
         <span class="login-logo"></span>
       </h1>
     </header>
+    <div class="login-container">
+      <slot></slot>
+
+      <div class="mobileAd">
+        <MobileAd/>
+      </div>
+    </div>
   </div>
 </template>
 
